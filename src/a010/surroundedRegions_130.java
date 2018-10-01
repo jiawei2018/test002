@@ -31,6 +31,9 @@ public class surroundedRegions_130 {
     public void solve(char[][] board) {
         //顺着边一直找不就行了??
         //先检查4边,发现o就沿着他扩散,直到周围3个无法扩散为止
+        if(board == null || board.length == 0 || board[0].length ==0){
+            return;
+        }
 
     }
 }
