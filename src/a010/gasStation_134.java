@@ -95,14 +95,15 @@ public class gasStation_134 {
     }
 
     public int canCompleteCircuit(int[] gas, int[] cost) {
+        // 道理是对的,课当时怎么想象出来??
         int tank = 0;
         int cursum = 0;
         int start = 0 ;
         for(int i = 0; i < gas.length; i++){
-            cursum += gas[i] - cost[i] ;
+            cursum += gas[i] - cost[i] ;//是否有?
             if(tank < 0 ){
-               tank = gas[i] - cost[i];
-               start = i;
+               tank = gas[i] - cost[i];//
+               start = i;// 是哪个?
             }else
                 tank += gas[i] - cost[i];
         }
