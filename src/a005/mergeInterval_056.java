@@ -130,32 +130,39 @@ public class mergeInterval_056 {
 
 
 
-        //from csdn   更好理解,更加直观
+        //final version
         public List<Interval> mergeB(List<Interval> intervals) {
             if (intervals == null || intervals.size() == 0) {
                 return intervals;
             }
-
-
-            Interval[] intervalArray = intervals.toArray(new Interval[intervals.size()]);//此处不同
-            Arrays.sort(intervalArray, new Comparator<Interval>() {//排序
+           // Interval[] intervalArray = intervals.toArray(new Interval[intervals.size()]);//此处不同
+            Collections.sort(intervals,new Comparator<Interval>() {//key key key   or use lambda
                 @Override
                 public int compare(Interval o1, Interval o2) {
-                    return o1.start - o2.start;//也是不规范写法
+                    //return o1.start - o2.start;//起始值升序排序  不能用此法,可能会 overflow
+                    if(o1.start == o2 .start){
+                        return 0;
+                    }else if(o1.start > o2.start){
+                        return -1;
+                    }else {
+                        return 1;
+                    }
                 }
             });
-            ArrayList<Interval> result = new ArrayList<Interval>();
-            Interval flag = intervalArray[0];
-            for (int i = 1; i < intervalArray.length; i++) {//合并的规则判断
-                if (flag.end < intervalArray[i].start) {
-                    result.add(flag);
-                    flag = intervalArray[i];//呼应这句
-                } else {
-                    flag.end = Math.max(flag.end, intervalArray[i].end);
+            List<Interval> res = new ArrayList<>();
+            int start = intervals.get(0).start;
+            int end = intervals.get(0).end;
+            for (Interval i : intervals) {//合并的规则判断
+                if(i.start <= end){
+                    end = Math.max(end, i.end);
+                }else{//i.start > former end
+                    res.add(new Interval(start, end));
+                    start = i.start;
+                    end = i.end;
                 }
             }
-            result.add(flag);//不要漏了加上最后一个区间   -> 就是呼应的上面那句
-            return result;
+            res.add(new Interval(start, end));//不要漏了加上最后一个区间   -> 就是呼应的上面那句
+            return res;
         }
 
 

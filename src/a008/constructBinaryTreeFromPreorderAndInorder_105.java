@@ -27,9 +27,29 @@ public class constructBinaryTreeFromPreorderAndInorder_105 {
             if(preorder.length != inorder.length) return new TreeNode(0);
 
             TreeNode  res = maketree(preorder, inorder, 0, 0, preorder.length -1);
-
+            //            int[] pre = new int[1];
+            //         int[] inc = new int[1];
+            //            TreeNode  res = recur(preorder, inorder, pre, inc, Integer.MAX_VALUE);
             return res;
         }
+
+            //laioffer solution
+            private TreeNode recur(int[] preorder, int[] inorder, int[] prestart, int[] instart , int target){
+
+                if(instart[0] >= inorder.length || inorder[instart[0]] == target){
+                    return null;
+                }
+
+                TreeNode root = new TreeNode(preorder[prestart[0]]);
+                prestart[0]++;
+                System.out.println(prestart[0]);
+                root.left = recur(preorder, inorder, prestart , instart, root.val);
+                instart[0]++;
+                System.out.println(instart[0]);
+                root.right = recur(preorder, inorder, prestart, instart , target);
+                return root;
+        }
+
 
     private  TreeNode maketree(int[] preorder, int[] inorder, int prestart, int instart , int inend){
         if(prestart > preorder.length || instart > inend) return null;//?

@@ -24,7 +24,7 @@ import java.util.List;
 
  */
 public class reverseWordsInAString_151 {
-    public String reverseWords(String s) {
+    public String reverseWords(String s) {//naive .....use lots API
         if(s == null || s.length() ==0){
             return s;
         }
@@ -72,13 +72,57 @@ public class reverseWordsInAString_151 {
             return sb.toString();
     }
 
+    public String reverseWordsC(String s) {
+        if(s == null || s.length() ==0){
+            return s;
+        }
+        StringBuilder sb = new StringBuilder(spaceProcess(s)).reverse();
+        StringBuilder res = new StringBuilder();
+        StringBuilder temp = new StringBuilder();
+        for(int i = 0; i < sb.length(); i++){
+            if(sb.charAt(i) != ' '){
+                temp.append(sb.charAt(i));
+            }else if(i != 0) {
+                res.append(temp.reverse());
+                res.append(' ');
+                temp.delete(0, temp.length());
+            }else
+                continue;
+        }
+        res.append(temp.reverse());//lastword
+        return res.toString();//.substring(0, res.length() - 1);
+    }
+    private String spaceProcess(String s){
+        //no need corner case
+        //from laicalss
+        char[] ca = s.toCharArray();
+        int idx = 0;
+        for(int i = 0; i < ca.length; i++){
+            if(ca[i] == ' ' && (i == 0 || ca[i - 1] == ' ')){
+                continue;
+            }else{
+                ca[idx++] = ca[i];
+            }
+        }
+        if(idx > 0 && ca[idx - 1] == ' '){
+            return new String(ca, 0, idx - 1);
+        }else
+            return new String(ca, 0 , idx);
+
+    }
+
+
+
+
+
+
 
 
     public static void main(String[] args) {
         String s = "   a   b ";
-        String s1 = "  the sky is blue ";
+        String s1 = "  the sky     is blue ";
         reverseWordsInAString_151 t = new reverseWordsInAString_151();
-        System.out.println(t.reverseWordsB(s1));
+        System.out.println(t.reverseWordsC(s1));
 
     }
 }

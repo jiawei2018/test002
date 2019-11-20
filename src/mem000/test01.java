@@ -2,6 +2,7 @@ package mem000;
 
 public class test01 {
     public static void main(String[] args) {
-        Math.sqrt(3);
+
+        System.out.println(0.1+0.2);
     }
 }

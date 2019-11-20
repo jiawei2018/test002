@@ -48,13 +48,14 @@ public class binaryTreeInorderTraversal_094_important {
         Stack<TreeNode> st = new Stack<>();
         TreeNode temp = root;
         while (temp != null || !st.isEmpty()) {
-            while (temp != null) {//先左走到底
+            if (temp != null) {//先左走到底
                 st.push(temp);
                 temp = temp.left;
+            }else {
+                TreeNode parent = st.pop();
+                res.add(parent.val);
+                temp = parent.right;
             }
-            temp = st.pop();
-            res.add(temp.val);
-            temp = temp.right;
         }
         return res;
     }
@@ -92,7 +93,7 @@ public class binaryTreeInorderTraversal_094_important {
         return res;
     }
 
-    public List<Integer> preorderTraversalLai(TreeNode root) {
+    public List<Integer> inorderTraversalLai(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         if (root == null) {
             return res;
@@ -114,17 +115,6 @@ public class binaryTreeInorderTraversal_094_important {
     }
 
 
-    public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        return res;
-    }
-
-    private void preorder(TreeNode node, List<Integer> res) {
-        if (node == null) return;
-        res.add(node.val);
-        inorder(node.left, res);
-        inorder(node.right, res);
-    }
 
     ////////////////////////////////////////////////////////////////////////
     public List<Integer> postorderTraversalA(TreeNode root) {//non -recursion
@@ -157,6 +147,8 @@ public class binaryTreeInorderTraversal_094_important {
     }
 
 
+
+    //来offer方法
     public ArrayList<Integer> postorderTraversalI(TreeNode root) {
 
         ArrayList<Integer> resList = new ArrayList<Integer>();
@@ -193,13 +185,13 @@ public class binaryTreeInorderTraversal_094_important {
             } else if (current.left == prev) {
                 if (current.right != null) {
                     stack.push(current.right);
-                } else {
+                } else {//right == null
                     resList.add(current.val);
                     stack.pop();
                 }
 
                 //go up the tree from right node
-                //after coming back from right node, process parent node and pop stack.
+                //after coming back 5from right node, process parent node and pop stack.
             } else {// if(current.right == prev)
                 resList.add(current.val);
                 stack.pop();
@@ -210,6 +202,59 @@ public class binaryTreeInorderTraversal_094_important {
 
         return resList;
     }
+
+
+
+    //from piazza
+    public List<Integer> postOrderTraversal(TreeNode root){
+        List<Integer> res = new ArrayList<>();
+        if(root == null){
+            return res;
+        }
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode prev = null;
+        while(!stack.isEmpty() || root != null){
+            while(root != null){
+                stack.offerFirst(root);
+                root = root.left;
+            }
+            TreeNode temp = stack.peek();
+            if(temp.right == null || temp.right == prev){
+                res.add(stack.pollFirst().val);
+            }else{
+                root = temp.right;
+            }
+            prev = temp;
+        }
+        return res;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     //对该方法仔细研究，就会发现stack2里面存储的就是后续遍历输出的整个顺序。

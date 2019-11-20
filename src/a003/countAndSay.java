@@ -5,7 +5,7 @@ package a003;
  * DescriptionHintsSubmissionsDiscussSolution
  * Pick One
  * The count-and-say sequence is the sequence of integers with the first five terms as following:
- *
+ * <p>
  * 1.     1
  * 2.     11
  * 3.     21
@@ -14,23 +14,23 @@ package a003;
  * 1 is read off as "one 1" or 11.
  * 11 is read off as "two 1s" or 21.
  * 21 is read off as "one 2, then one 1" or 1211.
- *
+ * <p>
  * Given an integer n, generate the nth term of the count-and-say sequence.
- *
+ * <p>
  * Note: Each term of the sequence of integers will be represented as a string.
- *
+ * <p>
  * Example 1:
- *
+ * <p>
  * Input: 1
  * Output: "1"
- *
- *
+ * <p>
+ * <p>
  * Example 2:
- *
+ * <p>
  * Input: 4
  * Output: "1211"
  * Input Constraints:
- *
+ * <p>
  * 1 <= n <= 30
  */
 public class countAndSay {
@@ -41,46 +41,42 @@ public class countAndSay {
     public String countAndSay(int n) {
         String res = "1";
 
-        for(int i = 1; i<  n ; i++){
+        for (int i = 1; i < n; i++) {
             int counts = 0;//count nums of first
             StringBuilder st = new StringBuilder("");
-            for(int j  = 0 ; j< res.length(); j++){
+            for (int j = 0; j < res.length(); j++) {
                 counts++;
-                if(j+1 < res.length() && res.charAt(j ) != res.charAt(j+1)){
+                if (j + 1 < res.length() && res.charAt(j) != res.charAt(j + 1)) {
                     st = st.append(counts).append(res.charAt(j));
                     counts = 0;
-                }else if (j + 1 == res.length()){
+                } else if (j + 1 == res.length()) {
                     st = st.append(counts).append(res.charAt(j));//i am so stupid ....   st.append("1")????must be  counts
                 }
-
             }
             res = st.toString();
             System.out.println(res);
         }
-
-
         return res;
     }
 
 
     public String countAndSayA(int n) {//resursion
-        if(n == 1) return "1";
+        if (n == 1) return "1";
 
-        String res  =  countAndSayA(n-1) + "*";
-        int counts= 1;
-        String str = "";
-        for(int i = 0; i< res.length() - 1; i++){//mistake  must start at 0 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            if(res.charAt(i) == res.charAt(i+1)){
+        String before = countAndSayA(n - 1) + " ";
+        int counts = 1;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < before.length() - 1; i++) {//mistake  must start at 0 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (before.charAt(i) == before.charAt(i + 1)) {
                 counts++;
-            }else{
-                str = str + counts+ res.charAt(i);
+            } else {
+                sb.append(counts).append(before.charAt(i));
                 counts = 1;
             }
         }
-        System.out.println(str + " <");
-        return str;
+        System.out.println(sb + " <");
+        return sb.toString();
     }
-
 
 
 //    public String countAndSayD(int n) {
@@ -103,12 +99,6 @@ public class countAndSay {
 //        System.out.println(s);
 //        return s;
 //    }
-
-
-
-
-
-
 
 
     //copy from web
@@ -137,18 +127,13 @@ public class countAndSay {
 //    }
 
 
-
-
-
-
-
-    public static void main(String[] args){
+    public static void main(String[] args) {
         countAndSay t1 = new countAndSay();
-           // t1.countAndSay(6);
-            t1.countAndSayA(6);
-           // t1.countAndSayD(6);
+        // t1.countAndSay(6);
+        t1.countAndSayA(6);
+        // t1.countAndSayD(6);
         System.out.println("=================");
-           // t1.countAndSayC(6);
+        // t1.countAndSayC(6);
 
     }
 }

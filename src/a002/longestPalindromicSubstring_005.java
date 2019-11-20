@@ -48,7 +48,20 @@ public class longestPalindromicSubstring_005 {
             right++;
         }
         //System.out.println(left+"<<    " + right +">>");
+        //at here left != right,so the rrange will be left+1 to right-1
         return str.substring(left+1,right);//为什么不是right-1??只有left+1? 此处不理解
+        //public String substring(int beginIndex,
+        //               int endIndex)
+        //Returns a new string that is a substring of this string. The substring begins at the specified beginIndex and extends to the character at index endIndex - 1. Thus the length of the substring is endIndex-beginIndex.
+        //Examples:
+        //
+        // "hamburger".substring(4, 8) returns "urge"
+        // "smiles".substring(1, 5) returns "mile"
+        //
+        //Parameters:
+        //beginIndex - the beginning index, inclusive.
+        //endIndex - the ending index, exclusive.
+
         //此处大概因为substring的特点,取上一个是lp的时候是坐标
        // 比如 babad
        //         aba是,扩散以后 babad 不是,
@@ -105,3 +118,31 @@ public class longestPalindromicSubstring_005 {
 思路3：专门解决回文串的一个著名算法 Manacher 算法。
  */
 
+
+//    public String longestPalindrome(String s) {
+//        if(s == null || s.length() == 1){
+//            return ture;
+//        }
+//        int maxLen = 0;
+//        String res = "";
+//        String cur;//for aba
+//        String curodd;//for abba
+//
+//        for(int i = 0; i < s.length(); i++){
+//            cur = getp(s, i , i);
+//            curodd = getp(s, i , i + 1);
+//            String tmp = cur.length() > curodd.length() ? cur : curodd;
+//            res = tmp.length() > maxLen ? tmp : res;
+//        }
+//        return res;
+//    }
+//
+//    private void getp(String str, int left, int right){
+//        while(left >= 0 && right < str.length() && (str.charAt(left) == str.charAt(right))){
+//            left--;
+//            right++;
+//        }
+//
+//        return str.substring(left + 1, right);
+//
+//    }

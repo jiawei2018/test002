@@ -32,7 +32,9 @@ public class mutiplyStrings_043 {
     private String multiply(String num1, String num2) {
         //遇到这种题 要画图来辅助思路!!!!!!!!
         //https://www.youtube.com/watch?v=Z_xGMYUSEJ8
-        if(num1 == "0" || num2 == "0" || num1.length() == 0 || num2.length() == 0) return "0";//leetcode 这句没作用
+        if(num1 == null || num2 == null ){
+            return "0";//leetcode 这句没作用
+        }
 
         int[] res = new int[num1.length() + num2.length()];
 
@@ -45,7 +47,7 @@ public class mutiplyStrings_043 {
                 int highpos = i + j;//high is at he left of low ,so is low --;
                 mul += res[lowpos];//实际结果是之前的进位到lowpos以后的那个 进位 与当前乘积的和. res[low] 其实就是进位
                 res[lowpos] = mul % 10; //个位 是模一下//题点
-                res[highpos] = res[highpos] + mul / 10;//十位是除一下//题点
+                res[highpos] += mul / 10;//十位是除一下//题点
             }
         }
 
@@ -54,8 +56,7 @@ public class mutiplyStrings_043 {
             if(d == 0 && ans.length() == 0 ) continue;//此句精妙!  一定要记住 这个 leadingzero的去除方法!!
             ans.append(d);
         }
-        return ans.toString();
-        //return ans.length() == 0 ? "0":ans.toString(); //leetcode 没这个不行,leetcode的bug
+        return ans.length() == 0 ? "0" : ans.toString();
     }
 
     //////////////////////////////////////////////////////////////////////////////////
@@ -78,7 +79,6 @@ public class mutiplyStrings_043 {
             ans.append(d);
         }
         return ans.toString();
-        //return ans.length() == 0 ? "0":ans.toString(); //leetcode 没这个不行,leetcode的bug
     }
 
 

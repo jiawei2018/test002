@@ -86,23 +86,23 @@ public class firstMissingPositive_041 {
 
 
 
-    private int generalWay(int[] nums){
-        //https://www.youtube.com/watch?v=8DqewGsVNkI    这个就是通用思维  ,这个还有 一个奇怪但是可行解法
-        boolean[] ck= new boolean[Integer.MAX_VALUE];//建立全部正整数的数组
-
-        for(int i = 0; i < nums.length; i++){//遍历一次 ,跳过所有的负数和0,
-            if(nums[i] <= 0) continue;
-
-            ck[nums[i]] = true;//找到boolean数组idx = nums[i] 的 设置成 true;
-
-        }
-        int ans  = 1;
-        for(int j = 0; j < Integer.MAX_VALUE; j++){//遍历第二遍 找到第一个是false的idx,则 ans就是 idx+1
-            if(ck[j] == false) ans = j+1;
-        }
-
-        return ans;
-    }
+//    private int generalWay(int[] nums){
+//        //https://www.youtube.com/watch?v=8DqewGsVNkI    这个就是通用思维  ,这个还有 一个奇怪但是可行解法
+//        boolean[] ck= new boolean[Integer.MAX_VALUE];//建立全部正整数的数组
+//
+//        for(int i = 0; i < nums.length; i++){//遍历一次 ,跳过所有的负数和0,
+//            if(nums[i] <= 0) continue;
+//
+//            ck[nums[i]] = true;//找到boolean数组idx = nums[i] 的 设置成 true;
+//
+//        }
+//        int ans  = 1;
+//        for(int j = 0; j < Integer.MAX_VALUE; j++){//遍历第二遍 找到第一个是false的idx,则 ans就是 idx+1
+//            if(ck[j] == false) ans = j+1;
+//        }
+//
+//        return ans;
+//    }
 
     public static void main(String[ ] args){
 

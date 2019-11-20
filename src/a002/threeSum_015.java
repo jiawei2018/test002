@@ -28,7 +28,7 @@ public class threeSum_015 {
     List<List<Integer>> res = new ArrayList<List<Integer>>();
     protected List<List<Integer>> threeSum(int[] nums) {
 
-        if(nums == null || nums.length <3){//mistake 1 ,muust <3 ,if it is 3 ,there will be an error like [0,0,0]  ->  [[0,0,0]]
+        if(nums == null || nums.length <3){//mistake 1 ,must <3 ,if it is 3 ,there will be an error like [0,0,0]  ->  [[0,0,0]]
             return res;
         }
         Arrays.sort(nums);

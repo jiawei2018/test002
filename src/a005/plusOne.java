@@ -49,7 +49,7 @@ public class plusOne {
             if (digits[i] < 9){
                 digits[i]++;
                 return digits;
-            } else {
+            } else {//equal to 9
                 digits[i] = 0;
             }
         }

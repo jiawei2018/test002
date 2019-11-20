@@ -57,10 +57,10 @@ public class twoSum_III_dataStructureDesign {
 
         public boolean find(int value) {
             for(int key : map.keySet()) {
-                int another = value - key;
-                if(another == key && map.get(key) > 1) {
+                int target = value - key;//
+                if(target == key && map.get(key) > 1) {
                     return true;
-                } else if(another != key && map.containsKey(another)) {
+                } else if(target != key && map.containsKey(target)) {
                     return true;
                 }
             }
