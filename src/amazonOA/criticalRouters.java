@@ -205,7 +205,7 @@ public class criticalRouters {
                 recur(res, graph, parent, nei, discoverTime,lowestTime, visited);
                 lowestTime[cur] = Math.min(lowestTime[cur], lowestTime[nei]);
                 //case for root of graph 2 child is a CR
-                //此处需要仔细理解,结合我的最后一个例子看,箱单难得题目
+                //此处需要仔细理解,结合我的最后一个例子看,箱单难的题目
                 if(parent[cur] == -1 && children > 1) {//must > 1 or fail
                     res.add(cur);
                 }

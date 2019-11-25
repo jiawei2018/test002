@@ -15,24 +15,21 @@ public class mergeTwoSortedLinkedList {
       ListNode tmp = res;
       while(l1 != null && l2 != null){
           if(l1.val <= l2.val){
-              tmp.next = new ListNode(l1.val);
+              tmp.next = l1;
               l1 = l1.next;
           } else {
-              tmp.next = new ListNode(l2.val);
+              tmp.next = l2;
               l2 = l2.next;
           }
           tmp = tmp.next;
       }
-      while(l1 != null){
-          tmp.next = new ListNode(l1.val);
-          l1 = l1.next;
-          tmp = tmp.next;
+      //here is important we dont need to append rest node, just append the remain one will work
+      if(l1 != null){
+          tmp.next = l1;
+      }else {
+          tmp.next = l2;
       }
-      while(l2 != null){
-          tmp.next = new ListNode(l2.val);
-          l2 = l2.next;
-          tmp = tmp.next;
-      }
+
       return res.next;
   }
 
